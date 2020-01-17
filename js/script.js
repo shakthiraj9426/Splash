@@ -146,24 +146,24 @@ if(username==null)
 {
   username="";
 }
-if (h<11 && h==11)
+if (h<11 || h==11)
 {
 status = "Morning "+username;
 console.log(status);
 $('#greets').html("Good,"+status);
 }
-else if (h>=16 && h==16)
+else if (h>=12 || h==16)
 {
 status = "Afternoon "+username;
 $('#greets').html('Good,'+status);
 }
-else if (h>=17 && h==20)
+else if (h>=17 || h==20)
 {
 status = "Evening "+username;
 $('#greets').html('Good,'+status);
 
 }
-else if (h>=21 && h==21)
+else if (h>=21 || h==23)
 {
 status = "Night "+username;
 $('#greets').html('Good,'+status);
@@ -415,6 +415,75 @@ $('#news').on('mouseout',function()
 {
 $('#news').removeClass('mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored');
 });
+
+
+
+//Check New Update of the Extension
+
+var current_version;
+
+
+
+
+
+
+
+$.ajax({
+url:'https://unsplashsammy.000webhostapp.com/update.json',
+headers: {"Allow-Origin": "*"},
+type:'GET',
+success:function(data)
+{
+console.log(data);
+
+var full_data=data;
+
+var cloud_version=full_data.version;
+
+var url=full_data.url;
+
+$.getJSON('./update.json', function version(data) {
+                  
+current_version=data.version;
+
+//Check for New Update
+
+
+if (cloud_version!=current_version) 
+{
+   $('#url').text('Update Found!');
+  $('#url').attr('href','https://github.com/pythonKiller990/UNSPLASH-V1.3');
+  $('#update').css('visibility','hidden');
+}
+else
+{
+  $('#update').css('visibility','hidden');
+
+
+}
+                  
+               
+});
+
+},error:function(e)
+{
+console.log(e);
+}
+});
+
+
+//check for new version
+
+/*if(current_version!=cloud_version)
+{
+  alert('Update Avialable');
+}
+else
+{
+  alert("Update not found!");
+}*/
+
+
 
 
 // update ends here
