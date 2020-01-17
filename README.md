@@ -1,6 +1,6 @@
 # Unsplash v1.3
 Chrome new tab extension.
-![Screenshot 2019-12-26 at 12 03 23 AM](https://user-images.githubusercontent.com/52311969/71707731-f2bcc280-2e11-11ea-92ef-6b2264458378.png)
+<img src="https://firebasestorage.googleapis.com/v0/b/my-project-1544342477588.appspot.com/o/Screenshot%202020-01-17%20at%207.06.03%20PM.png?alt=media&token=3bec956f-0d3f-4542-a729-ae64c773cf7f">
 
 
 <h3>Steps to install this n Google Chrome</h3>
