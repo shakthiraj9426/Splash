@@ -1,0 +1,8 @@
+1.unzip the project
+2.Open Chrome Browser in PC
+3.ADD chrome://extensions/ in your chrome address bar
+4.Turn on Developer mode
+5.click on load unpacked
+6.Select That unzipped folder
+7.Enjoy
+
