@@ -2,6 +2,12 @@
 Chrome new tab extension.
 <img src="https://firebasestorage.googleapis.com/v0/b/my-project-1544342477588.appspot.com/o/Screenshot%202020-01-17%20at%207.06.03%20PM.png?alt=media&token=3bec956f-0d3f-4542-a729-ae64c773cf7f">
 
+<br>
+<h1>Settings<h1>
+  
+  <img src="https://firebasestorage.googleapis.com/v0/b/my-project-1544342477588.appspot.com/o/Screenshot%202020-01-17%20at%207.06.17%20PM.png?alt=media&token=610359c2-7d01-449f-8a28-e7a2f836c6bf">
+  <br>
+
 
 <h3>Steps to install this n Google Chrome</h3>
 
