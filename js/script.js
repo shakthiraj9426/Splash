@@ -146,24 +146,24 @@ if(username==null)
 {
   username="";
 }
-if (h<11 || h==11)
+if (h<=11)
 {
 status = "Morning "+username;
 console.log(status);
 $('#greets').html("Good,"+status);
 }
-else if (h>=12 || h==16)
+else if (h>12 && h<=16)
 {
 status = "Afternoon "+username;
 $('#greets').html('Good,'+status);
 }
-else if (h>=17 || h==20)
+else if (h>16 && h<=20)
 {
 status = "Evening "+username;
 $('#greets').html('Good,'+status);
 
 }
-else if (h>=21 || h==23)
+else if (h>20 && h<23)
 {
 status = "Night "+username;
 $('#greets').html('Good,'+status);
