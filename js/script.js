@@ -9,12 +9,14 @@ $(document).ready(function()
     name="User";
     $('#name').val("");
     document.title="New Tab";
+    $('#message').text("Hi, "+name);
     
    
   }
   else{
   $('#name').val(name);
   document.title='Hey, '+name;
+  $('#message').text("Hi, "+name);
   }
 
   //check theme status from local storage
@@ -23,16 +25,19 @@ $(document).ready(function()
   {
     $('#theme').attr('href','https://code.getmdl.io/1.3.0/material.teal-green.min.css');
     $('.themes option[value=default]').attr('selected','selected');
+    $('#heading').css("color", "#80cbc4");
   }
   else if(theme=='purple')
   {
     $('#theme').attr('href','https://code.getmdl.io/1.3.0/material.purple-deep_purple.min.css');
     $('.themes option[value=purple]').attr('selected','selected');
+    $('#heading').css("color", "#7c4dff");
   }
   else if(theme=='indigo')
   {
     $('#theme').attr('href','https://code.getmdl.io/1.3.0/material.indigo-blue.min.css');
     $('.themes option[value=indigo]').attr('selected','selected');
+    $('#heading').css("color", "#42a5f5");
   }
 
 
@@ -54,7 +59,7 @@ console.log(e);
 }
 /*Function to change Random Background Image*/
 /* This function takes weather description*/
-function getNewBackground(status)
+function getNewBackground(status,mood)
 {
 
   //Add a click event on instagram link by unsplah
@@ -65,7 +70,7 @@ window.open('https://www.instagram.com/unsplash','_blank');
 
 //change backgroundImage start from here
 
-$('.main').css('background-image','url(https://source.unsplash.com/random/?'+status+')');
+$('.main').css('background-image','url(https://source.unsplash.com/1600x900/?'+status+'?'+mood+')');
 //backgroundImage ends from here
 $('#user').html(" Photo by unsplash");
 
@@ -87,7 +92,44 @@ function get_current_time()
 {
 //Dates
 var day = new Date();
-var hour = day.getHours()%24;
+var hour = "";
+var time_format=localStorage.getItem('time');
+function preserve_mood()
+{
+  var mood=localStorage.getItem('mood');
+  if(mood=='sad')
+  {
+    $('.mood option[value=sad]').attr('selected','selected');
+  }
+  else if(mood=='happy' || mood==null)
+  {
+    $('.mood option[value=happy]').attr('selected','selected');
+  }
+  else if(mood=='angry')
+  {
+    $('.mood option[value=angry]').attr('selected','selected');
+  }
+  else
+  {
+    $('.mood option[value=depressed]').attr('selected','selected');
+  }
+ 
+
+}
+
+preserve_mood();
+
+
+if(time_format=='12' || time_format==null)
+{
+  hour=day.getHours()%12;
+  $('.time option[value=12]').attr('selected','selected');
+}
+else
+{
+  hour=day.getHours();
+  $('.time option[value=24]').attr('selected','selected');
+}
 console.log(hour);
 var minutes = day.getMinutes();
 var seconds = day.getSeconds();
@@ -104,24 +146,26 @@ if(username==null)
 {
   username="";
 }
-if (h<=12)
+if (h<=11)
 {
 status = "Morning "+username;
+console.log(status);
 $('#greets').html("Good,"+status);
 }
-else if (h<=16)
+else if (h<16 && h>=16)
 {
 status = "Afternoon "+username;
 $('#greets').html('Good,'+status);
 }
 else if (h>=17 && h<=20)
 {
-status = "Evening";
+status = "Evening "+username;
 $('#greets').html('Good,'+status);
+
 }
 else if (h>=21)
 {
-status = "Night";
+status = "Night "+username;
 $('#greets').html('Good,'+status);
 }
 
@@ -219,30 +263,60 @@ var randomNo = Math.floor(Math.random()*(0,myList.length-1));
 
 
 /** Update on 14-1-20 for background setting */
-if(localStorage.getItem('background')=='2')
+var mood=localStorage.getItem('mood');
+  switch(localStorage.getItem('background'))
   {
-    getNewBackground('Dark');
-    $('.backgrounds option[value=2]').attr('selected','selected');
-    //$("input[name=options]:last").attr('checked',true);
-    
-   
+    case '1':
+      getNewBackground(desc,mood);
+      $('.backgrounds option[value=1]').attr('selected','selected');
+      break;
+      case '2':
+      getNewBackground('Dark',mood);
+      $('.backgrounds option[value=2]').attr('selected','selected');
+      break;
+      case '3':
+        getNewBackground(myList[randomNo],mood);
+        $('.backgrounds option[value=3]').attr('selected','selected');
+        break;
+      case '4':
+        getNewBackground('Girls',mood);
+        $('.backgrounds option[value=4]').attr('selected','selected');
+        break;
+      case '5':
+        getNewBackground('Boys',mood);
+        $('.backgrounds option[value=5]').attr('selected','selected');
+        break;
+      case '6':
+        getNewBackground('Animals',mood);
+        $('.backgrounds option[value=6]').attr('selected','selected');
+        break;
 
-    
-    
-  }
-  else if(localStorage.getItem('background')=='1')
-  {
-    getNewBackground(desc);
-    $('.backgrounds option[value=1]').attr('selected','selected');
-    
-  }
-  else
-  {
-    getNewBackground(myList[randomNo]);
-    $('.backgrounds option[value=3]').attr('selected','selected');
+        case '7':
+          getNewBackground('Mounatins',mood);
+          $('.backgrounds option[value=7]').attr('selected','selected');
+          break;
+        case '8':
+          getNewBackground('Beach',mood);
+          $('.backgrounds option[value=8]').attr('selected','selected');
+          break;
+        case '9':
+          getNewBackground('Rainy',mood);
+          $('.backgrounds option[value=9]').attr('selected','selected');
+          break;
+          default:
+            getNewBackground(desc,mood);
+            $('.backgrounds option[value=1]').attr('selected','selected');
+            break;
+
+
   }
 
   //**Update Ends Here */
+
+
+  //Change Wallpapers According to user mood
+
+
 
 
 
@@ -280,16 +354,66 @@ $('#save').on('click',function()
 
   const backs=$('.backgrounds').children("option:selected").val();
   const theme_value=$('.themes').children("option:selected").val();
+  const time_value=$('.time').children("option:selected").val();
   const name=$('#name').val();
+  const mood=$('.mood').children("option:selected").val();
   localStorage.setItem('background',backs);
   localStorage.setItem('username',name);
   localStorage.setItem('theme',theme_value);
+  localStorage.setItem('time',time_value);
+  localStorage.setItem('mood',mood);
   
 
   snackbarContainer.MaterialSnackbar.showSnackbar({message:"Settings Saved!"});
   window.top.location.reload(false);
 
 });
+
+if(localStorage.length==0)
+{
+  $('#delete').css('visibility','hidden');
+}
+else
+{
+  $('#delete').css('visibility','visible');
+}
+
+
+$('#delete').on('click',function()
+{
+var is_delete=confirm("Are you sure to delete App Data!");
+if(is_delete)
+{
+  localStorage.clear();
+alert("Application Data Cleared!");
+window.top.location.reload(false);
+}
+});
+
+$('#delete').on('mousemove',function()
+{
+$('#bin').text('delete_forever');
+});
+$('#delete').on('mouseout',function()
+{
+$('#bin').text('delete');
+});
+
+
+
+//Add or remove setting button class on mousein or out
+
+$('#news').on('mousemove',function()
+{
+$('#news').addClass('mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored');
+});
+
+
+$('#news').on('mouseout',function()
+{
+$('#news').removeClass('mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored');
+});
+
 
 // update ends here
 });
