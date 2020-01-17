@@ -33,5 +33,11 @@ Chrome new tab extension.
 
 ![Screenshot 2020-01-03 at 11 03 07 AM](https://user-images.githubusercontent.com/52311969/71708620-bb054900-2e18-11ea-95b7-17d756b37e02.png)
 
+<br>
+
+5.Locate to unzipped folder of the project
+
+<img src="https://firebasestorage.googleapis.com/v0/b/my-project-1544342477588.appspot.com/o/Screenshot%202020-01-17%20at%207.21.11%20PM.png?alt=media&token=66bc873f-9494-4d74-9fd4-87d0bfa24620">
+
 
 
