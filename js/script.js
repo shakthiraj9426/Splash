@@ -86,14 +86,14 @@ function getNewBackground(status)
   //Add a click event on instagram link by unsplah
 $('#user-info').on('click',function()
 {
-window.open('https://www.instagram.com/unsplash','_blank');
+window.open('https://github.com/pythonKiller990/UNSPLASH-V1.3','_blank');
 });//click event ends here
 
 //change backgroundImage start from here
 
 $('.main').css('background-image','url(https://source.unsplash.com/1920x1366/?'+status+')');
 //backgroundImage ends from here
-$('#user').html(" Photo by unsplash");
+$('#user').html(" Github");
 
 
 //add a double click event on screen to change new background
@@ -508,3 +508,8 @@ $('#news').removeClass('mdl-button mdl-js-button mdl-button--fab mdl-button--min
 
 // update ends here
 });
+
+
+$(document).bind("contextmenu",function(e) {
+  e.preventDefault();
+ });
