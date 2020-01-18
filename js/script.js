@@ -31,16 +31,16 @@ $('.main').css('background-image','gradient.png');
     $('#theme').attr('href','https://code.getmdl.io/1.3.0/material.teal-green.min.css');
     $('.themes option[value=default]').attr('selected','selected');
     $('#heading').css("color", "#80cbc4");
-    $('#search').css('border-color','#80cbc4');
-    $('#key').css('color','#80cbc4');
+    //$('#search').css('border-color','#80cbc4');
+    //$('#key').css('color','#80cbc4');
   }
   else if(theme=='purple')
   {
     $('#theme').attr('href','https://code.getmdl.io/1.3.0/material.purple-deep_purple.min.css');
     $('.themes option[value=purple]').attr('selected','selected');
     $('#heading').css("color", "#7c4dff");
-    $('#search').css('border-color','#7c4dff');
-    $('#key').css('color','#7c4dff');
+    //$('#search').css('border-color','#7c4dff');
+    //$('#key').css('color','#7c4dff');
     
   }
   else if(theme=='indigo')
@@ -48,8 +48,8 @@ $('.main').css('background-image','gradient.png');
     $('#theme').attr('href','https://code.getmdl.io/1.3.0/material.indigo-blue.min.css');
     $('.themes option[value=indigo]').attr('selected','selected');
     $('#heading').css("color", "#42a5f5");
-    $('#search').css('border-color','#42a5f5');
-    $('#key').css('color','#42a5f5');
+    //$('#search').css('border-color','#42a5f5');
+    //$('#key').css('color','#42a5f5');
   }
   else if(theme=='amber')
   {
@@ -57,8 +57,8 @@ $('.main').css('background-image','gradient.png');
     $('#theme').attr('href','https://code.getmdl.io/1.3.0/material.yellow-amber.min.css');
     $('.themes option[value=amber]').attr('selected','selected');
     $('#heading').css("color", "#FBC02D");
-    $('#search').css('border-color','#FBC02D');
-    $('#key').css('color','#FBC02D');
+    //$('#search').css('border-color','#FBC02D');
+    //$('#key').css('color','#FBC02D');
   }
 
 
@@ -121,16 +121,19 @@ function preserve_mood()
   if(engine=='Google' || engine==null)
   {
     $('.eng option[value=Google]').attr('selected','selected');
+    $('#key').attr('placeholder','Google Search');
     
   }
   else if(engine=='stack')
   {
     $('.eng option[value=stack]').attr('selected','selected');
+    $('#key').attr('placeholder','Stack Search');
     
   }
   else
   {
     $('.eng option[value=yt]').attr('selected','selected');
+    $('#key').attr('placeholder','YouTube Search');
     
   }
   
