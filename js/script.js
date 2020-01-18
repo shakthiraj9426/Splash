@@ -1,7 +1,12 @@
 $(document).ready(function()
 {
+$('.main').css('background-image','gradient.png');
+  //display search bar
+
+
 //https://code.getmdl.io/1.3.0/material.purple-deep_purple.min.css
 //https://code.getmdl.io/1.3.0/material.indigo-blue.min.css
+//https://code.getmdl.io/1.3.0/material.yellow-amber.min.css
   var name=localStorage.getItem('username');
   var theme=localStorage.getItem('theme');
   if(name==null || name=="")
@@ -26,18 +31,34 @@ $(document).ready(function()
     $('#theme').attr('href','https://code.getmdl.io/1.3.0/material.teal-green.min.css');
     $('.themes option[value=default]').attr('selected','selected');
     $('#heading').css("color", "#80cbc4");
+    $('#search').css('border-color','#80cbc4');
+    $('#key').css('color','#80cbc4');
   }
   else if(theme=='purple')
   {
     $('#theme').attr('href','https://code.getmdl.io/1.3.0/material.purple-deep_purple.min.css');
     $('.themes option[value=purple]').attr('selected','selected');
     $('#heading').css("color", "#7c4dff");
+    $('#search').css('border-color','#7c4dff');
+    $('#key').css('color','#7c4dff');
+    
   }
   else if(theme=='indigo')
   {
     $('#theme').attr('href','https://code.getmdl.io/1.3.0/material.indigo-blue.min.css');
     $('.themes option[value=indigo]').attr('selected','selected');
     $('#heading').css("color", "#42a5f5");
+    $('#search').css('border-color','#42a5f5');
+    $('#key').css('color','#42a5f5');
+  }
+  else if(theme=='amber')
+  {
+
+    $('#theme').attr('href','https://code.getmdl.io/1.3.0/material.yellow-amber.min.css');
+    $('.themes option[value=amber]').attr('selected','selected');
+    $('#heading').css("color", "#FBC02D");
+    $('#search').css('border-color','#FBC02D');
+    $('#key').css('color','#FBC02D');
   }
 
 
@@ -59,7 +80,7 @@ console.log(e);
 }
 /*Function to change Random Background Image*/
 /* This function takes weather description*/
-function getNewBackground(status,mood)
+function getNewBackground(status)
 {
 
   //Add a click event on instagram link by unsplah
@@ -70,7 +91,7 @@ window.open('https://www.instagram.com/unsplash','_blank');
 
 //change backgroundImage start from here
 
-$('.main').css('background-image','url(https://source.unsplash.com/1600x900/?'+status+'?'+mood+')');
+$('.main').css('background-image','url(https://source.unsplash.com/1920x1366/?'+status+')');
 //backgroundImage ends from here
 $('#user').html(" Photo by unsplash");
 
@@ -82,7 +103,7 @@ $('#user').html(" Photo by unsplash");
 });*/
 
 Mousetrap.bind('ctrl+b', function(e) {
-  window.top.location.reload(false);
+  window.top.location.reload(true);
 });
 }
 //Call the function getQuote() to generate a single quote on every page load
@@ -96,23 +117,23 @@ var hour = "";
 var time_format=localStorage.getItem('time');
 function preserve_mood()
 {
-  var mood=localStorage.getItem('mood');
-  if(mood=='sad')
+  var engine=localStorage.getItem('engine');
+  if(engine=='Google' || engine==null)
   {
-    $('.mood option[value=sad]').attr('selected','selected');
+    $('.eng option[value=Google]').attr('selected','selected');
+    
   }
-  else if(mood=='happy' || mood==null)
+  else if(engine=='stack')
   {
-    $('.mood option[value=happy]').attr('selected','selected');
-  }
-  else if(mood=='angry')
-  {
-    $('.mood option[value=angry]').attr('selected','selected');
+    $('.eng option[value=stack]').attr('selected','selected');
+    
   }
   else
   {
-    $('.mood option[value=depressed]').attr('selected','selected');
+    $('.eng option[value=yt]').attr('selected','selected');
+    
   }
+  
  
 
 }
@@ -149,21 +170,20 @@ if(username==null)
 if (h<=11)
 {
 status = "Morning "+username;
-console.log(status);
 $('#greets').html("Good,"+status);
 }
-else if (h>12 && h<=16)
+else if (h>=12 && h<=16)
 {
 status = "Afternoon "+username;
 $('#greets').html('Good,'+status);
 }
-else if (h>16 && h<=20)
+else if (h>=16 && h<=19)
 {
 status = "Evening "+username;
 $('#greets').html('Good,'+status);
 
 }
-else if (h>20 && h<23)
+else if (h>=20 && h<=23)
 {
 status = "Night "+username;
 $('#greets').html('Good,'+status);
@@ -214,8 +234,10 @@ getWeather(city);
   var x = document.getElementById("myAudio"); 
 console.log(e);
 $('#temprature').css('display','none');
-$('.main').html('');
-$('.main').css('background-image','url(error.jpg)');
+$('.main').html('<h1 style="position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);font-size:85px;font-family:arial;color:#ffffff;font-weight:50px;text-align:center;width:100%;">No Internet Connection</h1>');
+$('.main').css('background-image','url(error.png)');
+$('.main').css('background-repeat','none');
+$('.main').css('background-size','cover');
 x.play();
 }
 });
@@ -231,6 +253,8 @@ getCity();
 function getWeather(city)
 {
 var url = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&APPID=16020d8d307b65395a579b8cdb9b33dd&units=metric";
+
+
 $.ajax({
 url: url,
 type: 'GET',
@@ -265,48 +289,111 @@ var randomNo = Math.floor(Math.random()*(0,myList.length-1));
 
 
 /** Update on 14-1-20 for background setting */
-var mood=localStorage.getItem('mood');
+var engine=localStorage.getItem('engine');
+
+if (engine==null || engine=='Google') 
+{
+$('#icons').attr('class','fab fa-google');
+  $('#key').keypress(function(event)
+  {
+var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+        if ($('#key').val()==null || $('#key').val().length==0) 
+        {
+          $('#key').attr('placeholder','key Required');
+        }
+        else
+        {
+          window.location="https://www.google.com/search?q="+$('#key').val(); 
+        }
+    }
+  });
+  
+  
+}
+else if (engine=='stack') 
+{
+  $('#icons').attr('class','fab fa-stack-overflow');
+
+  $('#key').keypress(function(event)
+  {
+var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+        if ($('#key').val()==null || $('#key').val().length==0) 
+        {
+          $('#key').attr('placeholder','key Required');
+        }
+        else
+        {
+          window.location="https://stackoverflow.com/search?q="+$('#key').val(); 
+        }
+    }
+  });
+}
+else
+{
+  $('#icons').attr('class','fab fa-youtube');
+
+  $('#key').keypress(function(event)
+  {
+var keycode = (event.keyCode ? event.keyCode : event.which);
+    if(keycode == '13'){
+        if ($('#key').val()==null || $('#key').val().length==0) 
+        {
+          $('#key').attr('placeholder','key Required');
+        }
+        else
+        {
+          window.location="https://www.youtube.com/results?search_query="+$('#key').val(); 
+        }
+    }
+  });
+}
+
+
+
+//Change Background
   switch(localStorage.getItem('background'))
   {
     case '1':
-      getNewBackground(desc,mood);
+      getNewBackground(desc);
       $('.backgrounds option[value=1]').attr('selected','selected');
       break;
       case '2':
-      getNewBackground('Dark',mood);
+      getNewBackground('Dark');
       $('.backgrounds option[value=2]').attr('selected','selected');
       break;
       case '3':
-        getNewBackground(myList[randomNo],mood);
+        getNewBackground(myList[randomNo]);
         $('.backgrounds option[value=3]').attr('selected','selected');
         break;
       case '4':
-        getNewBackground('Girls',mood);
+        getNewBackground('Girls');
         $('.backgrounds option[value=4]').attr('selected','selected');
         break;
       case '5':
-        getNewBackground('Boys',mood);
+        getNewBackground('Boys');
         $('.backgrounds option[value=5]').attr('selected','selected');
         break;
       case '6':
-        getNewBackground('Animals',mood);
+        getNewBackground('Animals');
         $('.backgrounds option[value=6]').attr('selected','selected');
         break;
 
         case '7':
-          getNewBackground('Mounatins',mood);
+          getNewBackground('Mounatins');
           $('.backgrounds option[value=7]').attr('selected','selected');
           break;
         case '8':
-          getNewBackground('Beach',mood);
+          getNewBackground('Beach');
           $('.backgrounds option[value=8]').attr('selected','selected');
           break;
         case '9':
-          getNewBackground('Rainy',mood);
+          getNewBackground('Rainy');
           $('.backgrounds option[value=9]').attr('selected','selected');
           break;
           default:
-            getNewBackground(desc,mood);
+            getNewBackground(desc);
             $('.backgrounds option[value=1]').attr('selected','selected');
             break;
 
@@ -358,12 +445,12 @@ $('#save').on('click',function()
   const theme_value=$('.themes').children("option:selected").val();
   const time_value=$('.time').children("option:selected").val();
   const name=$('#name').val();
-  const mood=$('.mood').children("option:selected").val();
+  const engine=$('.eng').children("option:selected").val();
   localStorage.setItem('background',backs);
   localStorage.setItem('username',name);
   localStorage.setItem('theme',theme_value);
   localStorage.setItem('time',time_value);
-  localStorage.setItem('mood',mood);
+  localStorage.setItem('engine',engine);
   
 
   snackbarContainer.MaterialSnackbar.showSnackbar({message:"Settings Saved!"});
