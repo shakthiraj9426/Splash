@@ -8,13 +8,19 @@ user-select: none;
 -moz-user-select: none; 
 -ms-user-select: none; 
 }
+
+h1
+{
+	font-family: 'Open Sans Condensed', sans-serif;
+}
 .main {
 width: 100%;
 height: 100vh;
+background-image: url('gradient.png');
 background-size: cover;
 background-position: center;
-background-attachment: fixed;
 background:transparent;
+background-repeat: no-repeat;
 }
 #greets
 {
@@ -103,6 +109,15 @@ top:75%;
 	left: 60%;
 }
 
+#temprature
+{
+	display: none;
+}
+
+img
+{
+	display: none;
+}
 
 
 
@@ -147,6 +162,11 @@ top:75%;
 	left: 80%;
 }
 
+#temprature
+{
+	display: none;
+}
+
 
 
 }
@@ -166,4 +186,63 @@ top:75%;
 {
 
 	transform: translate(-50%,-50%) rotate(45deg);
+}
+
+#search
+{
+	width: 250px;
+	height: 40px;
+	background-color: transparent;
+	position: absolute;
+	top: 25px;
+	left: 50px;
+	border-bottom: 2px solid #ffffff;
+	border-top: 2px solid #ffffff;
+	border-right: 2px solid #ffffff;
+	border-left: 2px solid #ffffff;
+	border-radius: 65px;
+	padding-left: 12px;
+
+}
+#key
+{
+	width: 150px;
+	height: 40px;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	position: absolute;
+	left: 70px;
+	color: #ffffff;
+	font-size: 1em;
+}
+
+#search-icon
+{
+	font-size: 1.5em;
+	position: absolute;
+	top: 70px;
+	left: 25px;
+	color: #ffffff;
+
+}
+
+.icon
+{
+	width: 20px;
+	height: 20px;
+	background-color: transparent;
+	position: absolute;
+	top: 10px;
+	color: #ffffff;
+}
+.engine
+{
+	width: 20px;
+	height: 20px;
+	background-color: transparent;
+	position: absolute;
+	top: 10px;
+	left: 85%;
+	color: #ffffff;
 }
