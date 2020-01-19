@@ -122,18 +122,24 @@ function preserve_mood()
   {
     $('.eng option[value=Google]').attr('selected','selected');
     $('#key').attr('placeholder','Google Search');
+    $('#icons').css('color','#42a5f5');
+    
     
   }
   else if(engine=='stack')
   {
     $('.eng option[value=stack]').attr('selected','selected');
     $('#key').attr('placeholder','Stack Search');
+    $('#icons').css('color','#FBC02D');
+    
     
   }
   else
   {
     $('.eng option[value=yt]').attr('selected','selected');
-    $('#key').attr('placeholder','YouTube Search');
+    $('#search_icon').text('file_download');
+    $('#key').attr('placeholder','Youtube video Link:');
+    $('#icons').css('color','red');
     
   }
   
@@ -284,14 +290,16 @@ $('#temp_info').html(desc+'<br>Minimum:'+temp_min+'<br>Maximum:'+temp_max);
 var myList = ['taj mahal','google','apple','girls','mountains','mercedes benz','rivers','water','boys','dark','cars','fish','delhi','new york','black','cat','baby','dogs','roses',
 'flowers','blossoms','usa','india','bangalore','night','morning','noon','evening','rainy','snow','thunderstorm','beach','flight'];
 var randomNo = Math.floor(Math.random()*(0,myList.length-1));
-//getNewBackground(myList[randomNo]);
-//getNewBackground(city);
-//getNewBackground(desc);
-//getNewBackground("Dark");
 
 
 
-/** Update on 14-1-20 for background setting */
+
+
+
+
+
+
+/** Update on 20-1-20 for background setting */
 var engine=localStorage.getItem('engine');
 
 if (engine==null || engine=='Google') 
@@ -300,7 +308,10 @@ $('#icons').attr('class','fab fa-google');
   $('#key').keypress(function(event)
   {
 var keycode = (event.keyCode ? event.keyCode : event.which);
+
+
     if(keycode == '13'){
+    
         if ($('#key').val()==null || $('#key').val().length==0) 
         {
           $('#key').attr('placeholder','key Required');
@@ -340,6 +351,7 @@ else
   $('#key').keypress(function(event)
   {
 var keycode = (event.keyCode ? event.keyCode : event.which);
+var __id="";
     if(keycode == '13'){
         if ($('#key').val()==null || $('#key').val().length==0) 
         {
@@ -347,7 +359,30 @@ var keycode = (event.keyCode ? event.keyCode : event.which);
         }
         else
         {
-          window.location="https://www.youtube.com/results?search_query="+$('#key').val(); 
+          if($('#key').val().length==43)
+            {
+                device="desktop";
+                __id=$('#key').val().substr($('#key').val().indexOf('v=')+2,$('#key').val().length-1);
+                
+                
+            }
+            else if($('#key').val().length==41){
+                device="web_mobile";
+                __id=$('#key').val().substr($('#key').val().indexOf('v=')+2,$('#key').val().length-1);
+            }
+            else if($('#key').val().length==28)
+            {
+                device="mobile";
+                __id=$('#key').val().substr($('#key').val().indexOf('be/')+3,$('#key').val().length-1);
+                //console.log(url.indexOf("be/"));
+            }
+            else
+            {
+                device="unknown";
+                alert(device+" device");
+                $('#key').val()="";
+            }
+          window.location="https://www.y2mate.com/download-youtube/"+__id; 
         }
     }
   });
@@ -360,6 +395,7 @@ var keycode = (event.keyCode ? event.keyCode : event.which);
   {
     case '1':
       getNewBackground(desc);
+      $('#search').css('border-color','#1d1d1d');
       $('.backgrounds option[value=1]').attr('selected','selected');
       break;
       case '2':
@@ -372,6 +408,7 @@ var keycode = (event.keyCode ? event.keyCode : event.which);
         break;
       case '4':
         getNewBackground('Girls');
+        $('#search').css('border-color','#1d1d1d');
         $('.backgrounds option[value=4]').attr('selected','selected');
         break;
       case '5':
@@ -442,7 +479,7 @@ $('#save').on('click',function()
 
   
   
-  var snackbarContainer = document.querySelector('#backs');
+  
 
   const backs=$('.backgrounds').children("option:selected").val();
   const theme_value=$('.themes').children("option:selected").val();
@@ -456,7 +493,7 @@ $('#save').on('click',function()
   localStorage.setItem('engine',engine);
   
 
-  snackbarContainer.MaterialSnackbar.showSnackbar({message:"Settings Saved!"});
+  
   window.top.location.reload(false);
 
 });
