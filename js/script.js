@@ -621,10 +621,7 @@ fReader.onloadend = function(event){
   
 
 
-$('#history').on('click',function()
-{
-window.open='chrome://history/';
-});
+
   
 
   
