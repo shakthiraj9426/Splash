@@ -15,4 +15,9 @@
 	{
 		"newtab":"index.html"
 	}
+	,
+	"permissions": [
+		"geolocation",
+		"bookmarks"
+	  ]
 }
