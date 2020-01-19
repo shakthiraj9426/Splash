@@ -1,4 +1,17 @@
+/*var elem = document.documentElement;
+
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  }*/
 $(document).ready(function () {
+
+
+  /*var el = document.documentElement,
+        rfs = el.requestFullScreen
+        || el.webkitRequestFullScreen
+        || el.mozRequestFullScreen;
+    rfs.call(el);*/
+  
 
 
 
@@ -89,10 +102,7 @@ $(document).ready(function () {
   /* This function takes weather description*/
   function getNewBackground(status) {
 
-    //Add a click event on instagram link by unsplah
-    $('#user-info').on('click', function () {
-      window.open('https://github.com/pythonKiller990/UNSPLASH-V1.3', '_blank');
-    }); //click event ends here
+     //click event ends here
 
     //change backgroundImage start from here
 
@@ -183,6 +193,8 @@ $(document).ready(function () {
     if (h <= 11) {
       status = "Morning " + username;
       $('#greets').html("Good," + status);
+      $('#bar').css('background-color','#ffffff');
+      $('#bar.ul.li.img').css('border-color','#000000');
     } else if (h >= 12 && h <= 16) {
       status = "Afternoon " + username;
       $('#greets').html('Good,' + status);
@@ -193,6 +205,7 @@ $(document).ready(function () {
     } else if (h >= 20 && h <= 23) {
       status = "Night " + username;
       $('#greets').html('Good,' + status);
+      $('#bar').css('background-color','#1d1d1d');
     }
 
 
@@ -233,7 +246,7 @@ $(document).ready(function () {
 
 
   // fUNCTION TO GET CURRENT CITY FROM INTERNET API
-  function getCity() {
+  /*function getCity() {
     $.ajax({
       url: 'https://ipinfo.io/json',
       'type': 'GET',
@@ -260,6 +273,17 @@ $(document).ready(function () {
         x.play();
       }
     });
+  }*/
+
+
+
+  function getCity(){
+    navigator.geolocation.getCurrentPosition(function(position) {
+      let lat = position.coords.latitude;
+      let long = position.coords.longitude;
+  
+      getWeather(long,lat);
+    });
   }
 
   //call the above function to get City
@@ -271,8 +295,8 @@ $(document).ready(function () {
 
 
   /*Weather Funtion start from here*/
-  function getWeather(city) {
-    var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=16020d8d307b65395a579b8cdb9b33dd&units=metric";
+  function getWeather(long,lat) {
+    var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon="+long+"&APPID=16020d8d307b65395a579b8cdb9b33dd&units=metric";
 
 
     $.ajax({
@@ -291,6 +315,8 @@ $(document).ready(function () {
         var sunset = weatherData.sys.sunset;
         console.log(country); //console only for debugging
         console.log(temp);
+
+        var city=data.name;
 
 
         console.log(desc);
@@ -442,11 +468,27 @@ $(document).ready(function () {
 
 
 
+  $('#file').on('input',function()
+  {
+
+    var input = document.getElementById("file");
+var fReader = new FileReader();
+fReader.readAsDataURL(input.files[0]);
+fReader.onloadend = function(event){
+    
+    localStorage.setItem('user-pic',event.target.result);
+}
+
+
+  });
+
 
 
 
   // Update on 14-1-20 for settings
   $('#save').on('click', function () {
+
+   
 
 
 
@@ -457,11 +499,14 @@ $(document).ready(function () {
     const time_value = $('.time').children("option:selected").val();
     const name = $('#name').val();
     const engine = $('.eng').children("option:selected").val();
+    const bar_dir = $('.bar').children("option:selected").val();
+    const avatar= $()
     localStorage.setItem('background', backs);
     localStorage.setItem('username', name);
     localStorage.setItem('theme', theme_value);
     localStorage.setItem('time', time_value);
     localStorage.setItem('engine', engine);
+    localStorage.setItem('dir',bar_dir);
 
 
 
@@ -523,7 +568,72 @@ $(document).ready(function () {
 
 
   // update ends here
+
+
+
+  
+
+
+  
+
+  // function to preserve the search engine state using localstorage
+  function preserve_bar() {
+    var show_hide = localStorage.getItem('dir');
+    if (show_hide == 'Show' || show_hide == null) {
+      
+      $('#bar').css('left', '-2%');
+      $('#bar').css('visibility', 'visible');
+      $('.bar option[value=Show]').attr('selected', 'selected');
+
+      $('#bar').on('mousemove',function()
+      {
+        $('#bar').css('left', '4%');
+      });
+
+      $('#bar').on('mouseleave',function()
+      {
+        $('#bar').css('left', '-2%');
+      });
+
+
+    
+
+
+    } 
+    else if (show_hide == 'Hide') {
+     
+      $('#bar').css('visibility', 'hidden');
+      $('.bar option[value=Hide]').attr('selected', 'selected');
+}
+
+
+
+  }
+
+  preserve_bar();
+
+  
+
+
+
+  //Hide File Input incase of picture is found in localstorage
+
+  
+
+
+$('#history').on('click',function()
+{
+window.open='chrome://history/';
 });
+  
+
+  
+});
+var bookmarkTreeNodes = chrome.bookmarks.getTree(
+  function(bookmarkTreeNodes) {
+   console.log(bookmarkTreeNodes[0].children);
+  });
+
 
 
 //This prevent to view source code or disable right click on the webpage
