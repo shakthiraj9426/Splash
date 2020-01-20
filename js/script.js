@@ -194,7 +194,8 @@ $(document).ready(function () {
       status = "Morning " + username;
       $('#greets').html("Good," + status);
       $('#bar').css('background-color','#ffffff');
-      $('#bar.ul.li.img').css('border-color','#000000');
+      $('img').css('border-color','#000000');
+      $('a').css('color','#1d1d1d');
     } else if (h >= 12 && h <= 16) {
       status = "Afternoon " + username;
       $('#greets').html('Good,' + status);
@@ -277,14 +278,36 @@ $(document).ready(function () {
 
 
 
-  function getCity(){
-    navigator.geolocation.getCurrentPosition(function(position) {
-      let lat = position.coords.latitude;
-      let long = position.coords.longitude;
-  
-      getWeather(long,lat);
-    });
-  }
+  function getCity()
+{
+  $.ajax({
+url:'https://ipinfo.io/json',
+'type':'GET',
+success:function(data)
+{
+console.log(data);
+var userinfo = data;
+var city = userinfo.city;
+var country = userinfo.country;
+console.log(city+"("+country+")");
+//$("#city").text(city);
+//$("#nav_city").text(city);
+//$("#inner_city").text(city+"("+country+")");
+
+getWeather(city);
+},error:function(e)
+{
+  var x = document.getElementById("myAudio"); 
+console.log(e);
+$('#temprature').css('display','none');
+$('.main').html('<h1 style="position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);font-size:85px;font-family:arial;color:#ffffff;font-weight:50px;text-align:center;width:100%;">No Internet Connection</h1>');
+$('.main').css('background-image','url(error.png)');
+$('.main').css('background-repeat','none');
+$('.main').css('background-size','cover');
+x.play();
+}
+});
+}
 
   //call the above function to get City
   getCity();
@@ -295,8 +318,8 @@ $(document).ready(function () {
 
 
   /*Weather Funtion start from here*/
-  function getWeather(long,lat) {
-    var url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon="+long+"&APPID=16020d8d307b65395a579b8cdb9b33dd&units=metric";
+  function getWeather(city) {
+    var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=16020d8d307b65395a579b8cdb9b33dd&units=metric";
 
 
     $.ajax({
@@ -316,7 +339,7 @@ $(document).ready(function () {
         console.log(country); //console only for debugging
         console.log(temp);
 
-        var city=data.name;
+        var city=city;
 
 
         console.log(desc);
@@ -403,7 +426,7 @@ $(document).ready(function () {
         switch (localStorage.getItem('background')) {
           case '1':
             getNewBackground(desc);
-            $('#search').css('border-color', '#1d1d1d');
+           
             $('.backgrounds option[value=1]').attr('selected', 'selected');
             break;
           case '2':
@@ -416,7 +439,7 @@ $(document).ready(function () {
             break;
           case '4':
             getNewBackground('Girls');
-            $('#search').css('border-color', '#1d1d1d');
+            
             $('.backgrounds option[value=4]').attr('selected', 'selected');
             break;
           case '5':
@@ -439,6 +462,11 @@ $(document).ready(function () {
           case '9':
             getNewBackground('Rainy');
             $('.backgrounds option[value=9]').attr('selected', 'selected');
+            break;
+
+            case '10':
+            getNewBackground('rose');
+            $('.backgrounds option[value=10]').attr('selected', 'selected');
             break;
           default:
             getNewBackground(desc);
