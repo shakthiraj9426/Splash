@@ -339,7 +339,7 @@ x.play();
         console.log(country); //console only for debugging
         console.log(temp);
 
-        var city=city;
+
 
 
         console.log(desc);
