@@ -1,4 +1,4 @@
-<img src="https://firebasestorage.googleapis.com/v0/b/my-project-1544342477588.appspot.com/o/logo.png?alt=media&token=7c136e4e-c666-41f3-8381-91579de62d84">
+<img src="Screenshot 2020-01-20 at 8 31 56 AM](https://user-images.githubusercontent.com/52311969/72695679-70e1ce80-3b5f-11ea-88d2-b20079700406.png">
 <br>
 Chrome new tab extension.
 <img src="https://firebasestorage.googleapis.com/v0/b/my-project-1544342477588.appspot.com/o/Screenshot%202020-01-17%20at%207.06.03%20PM.png?alt=media&token=3bec956f-0d3f-4542-a729-ae64c773cf7f">
