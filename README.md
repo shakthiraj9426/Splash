@@ -2,7 +2,7 @@
 <br>
 
 <br>
-Chrome new tab extension.
+<h4>Developer Profile as a sidebar</h4>
 <img src="https://user-images.githubusercontent.com/52311969/72695679-70e1ce80-3b5f-11ea-88d2-b20079700406.png">
 
 <br>
