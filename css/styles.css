@@ -27,6 +27,7 @@ h1 {
 	background-position: center;
 	background: transparent;
 	background-repeat: no-repeat;
+	z-index: 999;
 }
 
 #greets {
@@ -39,6 +40,7 @@ h1 {
 	line-height: normal;
 	font-family: 'Mansalva', cursive;
 	color: #ffffff;
+	
 
 }
 
@@ -52,6 +54,8 @@ h1 {
 	line-height: normal;
 	font-family: 'Arial', sans-serif;
 	color: #ffffff;
+	z-index: 999;
+	
 
 }
 
@@ -319,5 +323,63 @@ h1 {
 	text-align: center;
 	position: relative;
 }
+
+
+#news
+{
+	width: 500px;
+	height: 400px;
+	background-color: #ffffff;
+	position: absolute;
+	margin:10px auto;
+	top: 50%;
+	
+	left: -50%;
+	
+	transform: translate(-50%,-50%);
+	border-radius: 10px;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+}
+
+#news
+{
+	position: absolute;
+	z-index: 1000;
+}
+
+.main_heading
+{
+	font-family: 'Ubuntu', sans-serif;
+	margin: 10px 20px;
+	padding: 10x;
+
+}
+#thumb
+{
+	margin: 10px 20px;
+	padding: 10x;
+}
+#content
+{
+	margin: 10px 20px;
+	padding: 10x;
+	
+}
+
+#news button
+{
+	margin: 10px 20px;
+	padding: 10x;
+	width: 80px;
+	height: 40px;
+	border: none;
+	outline: none;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	border-radius: 65px;
+	color: #ffffff;
+
+}
+
 
 
