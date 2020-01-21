@@ -51,13 +51,14 @@ $(document).ready(function () {
     $('.themes option[value=default]').attr('selected', 'selected');
     $('#heading').css("color", "#80cbc4");
     //$('#search').css('border-color','#80cbc4');
-    //$('#key').css('color','#80cbc4');
+    $('button').css('background-color','#80cbc4');
   } else if (theme == 'purple') {
     $('#theme').attr('href', 'https://code.getmdl.io/1.3.0/material.purple-deep_purple.min.css');
     $('.themes option[value=purple]').attr('selected', 'selected');
     $('#heading').css("color", "#7c4dff");
     //$('#search').css('border-color','#7c4dff');
     //$('#key').css('color','#7c4dff');
+    $('button').css('background-color','#7c4dff');
 
   } else if (theme == 'indigo') {
     $('#theme').attr('href', 'https://code.getmdl.io/1.3.0/material.indigo-blue.min.css');
@@ -65,6 +66,7 @@ $(document).ready(function () {
     $('#heading').css("color", "#42a5f5");
     //$('#search').css('border-color','#42a5f5');
     //$('#key').css('color','#42a5f5');
+    $('button').css('background-color','#42a5f5');
   } else if (theme == 'amber') {
 
     $('#theme').attr('href', 'https://code.getmdl.io/1.3.0/material.yellow-amber.min.css');
@@ -72,6 +74,7 @@ $(document).ready(function () {
     $('#heading').css("color", "#FBC02D");
     //$('#search').css('border-color','#FBC02D');
     //$('#key').css('color','#FBC02D');
+    $('button').css('background-color','#FBC02D');
   }
 
 
@@ -194,11 +197,13 @@ $(document).ready(function () {
       status = "Morning " + username;
       $('#greets').html("Good," + status);
       $('#bar').css('background-color','#ffffff');
-      $('img').css('border-color','#000000');
+      
       $('a').css('color','#1d1d1d');
     } else if (h >= 12 && h <= 16) {
       status = "Afternoon " + username;
       $('#greets').html('Good,' + status);
+      $('a').css('color','#FBC02D');
+      
     } else if (h >= 16 && h <= 19) {
       status = "Evening " + username;
       $('#greets').html('Good,' + status);
@@ -207,6 +212,10 @@ $(document).ready(function () {
       status = "Night " + username;
       $('#greets').html('Good,' + status);
       $('#bar').css('background-color','#1d1d1d');
+      $('#news').css('background-color','#1d1d1d');
+      $('#content').css('color','#ffffff');
+      $('.main_heading').css('color','#ffffff');
+      
     }
 
 
@@ -615,7 +624,7 @@ fReader.onloadend = function(event){
 
       $('#bar').on('mousemove',function()
       {
-        $('#bar').css('left', '4%');
+        $('#bar').css('left', '3%');
       });
 
       $('#bar').on('mouseleave',function()
@@ -640,11 +649,55 @@ fReader.onloadend = function(event){
 
   preserve_bar();
 
+
+
+
+  //add a onmouse on news icon to change its class
+  $('#news_icon').on('mousemove',function()
+  {
+    $('#news_icon').removeClass('fas fa-newspaper fa-lg');
+$('#news_icon').addClass('far fa-newspaper fa-lg');
+
+  });
+
+  $('#news_icon').on('mouseleave',function()
+  {
+    $('#news_icon').removeClass('far fa-newspaper fa-lg');
+$('#news_icon').addClass('fas fa-newspaper fa-lg');
+
+  });
+
+  $('#news_icon').on('click',function()
+  {
+    $('#time').css('visibility','hidden');
+    $('#greets').css('visibility','hidden');
+    $( "#news" ).animate({
+      left:"50%"
+    });
+
+  });
+
+
+
+
+  //add event on close button of news container
+
+  $('#close').on('click',function()
+  {
+    $('#time').css('visibility','visible');
+    $('#greets').css('visibility','visible');
+    $( "#news" ).animate({
+      left:"-50%"
+    });
+
+  });
+
   
 
 
 
-  //Hide File Input incase of picture is found in localstorage
+  
+
 
   
 
