@@ -3,22 +3,12 @@ $(document).ready(function()
       //make a ajax request to the api
       var api_key='77fcc3b8e0e44caa9df1f04080fb1fdf';
 
+      var visit_url="";
+
 
 function get_News(key)
 {
-
-
-
-	var sources = ['abc-news','google-news-in']
-
-   	var totalsource = sources.length;
-
-   	var randomNoForSource = Math.floor(Math.random()*(0,totalsource));
-
-   	console.log([sources[randomNoForSource]]);
-
-
-  $.ajax({url:'https://newsapi.org/v2/top-headlines?sources='+[sources[randomNoForSource]]+'&apiKey='+key,
+$.ajax({url:'https://newsapi.org/v2/top-headlines?country=in&apiKey='+key,
    type:'GET',
    success:function(data)
    {
@@ -28,7 +18,7 @@ function get_News(key)
     console.log(totalArticles);
 
     var randomNo = Math.floor(Math.random()*(0,totalArticles));
-    console.log(randomNo);
+    //console.log(randomNo);
 
     var title = data['articles'][randomNo]['title'];
     var content = data['articles'][randomNo]['description'];
@@ -52,31 +42,34 @@ function get_News(key)
 
   //var new_title = text_truncate(title,40);
 
-    var visit_url = data['articles'][randomNo]['url'];
-    $('#thumb').css('background-image','url('+thumb_url+')');
+    visit_url = data['articles'][randomNo]['url'];
+    
    if(thumb_url!=null)
    {
-    $('.mdl-card__title').css('background-image','url('+thumb_url+')');
+    $('#thumb').attr('src',thumb_url);
    }
    else{
-    $('.mdl-card__title').css('background-image','url(welcome_card.jpg)');
+    $('#thumb').attr('src','welcome_card.jpg');
    }
+
+   if(content!=null)
+   {
     $('#title').html(title);
     $('#content').html(content);
-    $('#site').on('click',function()
-    {
-      window.open(visit_url,'_blank');
-    });
+   }
+   else
+   {
+    $('#content').html('content not avialable');
+   }
 
-    $('#share').on('click',function()
-    {
-      window.open('https://api.whatsapp.com/send?text='+visit_url,'_blank');
-    });
+    
+
+    
     
    
    },error:function(e)
    {
-    console.log(e.status);
+    //console.log(e.status);
     if (e.status==0) 
     {
       console.log('No Internet Connection!');
@@ -84,17 +77,25 @@ function get_News(key)
     }
     else
     {
-      consol.log(e);
+      console.log(e);
     }
    }
   })
 }
 
 get_News(api_key);
+$('#visit').on('click',function()
+    {
+      window.open(visit_url,'_blank');
+    });
 
 
-$(document).keydown(function(){
 
-  window.top.location.reload(false);
-});
+
+function run_api()
+{
+  get_News(api_key);
+}
+
+setInterval(run_api,10000);
 	});
