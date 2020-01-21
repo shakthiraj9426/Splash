@@ -4,6 +4,10 @@
 <br>
 <h4>Developer Profile as a sidebar</h4>
 <img src="https://user-images.githubusercontent.com/52311969/72695679-70e1ce80-3b5f-11ea-88d2-b20079700406.png">
+<br>
+<h4>News Feature</h4>
+
+![ezgif-1-984ea05cd965](https://user-images.githubusercontent.com/52311969/72772681-92f45300-3c2a-11ea-977b-b653b70ed628.gif)
 
 <br>
 <h1>Settings<h1>
