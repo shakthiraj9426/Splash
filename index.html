@@ -9,6 +9,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Anton|Mansalva&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
 		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
@@ -88,10 +89,28 @@
 		</a>
 
 		<div id="user-info"
-			style="position: absolute;top:92%;left: 2%;transform: (-50%,-50%);cursor: pointer;font-size: 15px;">
+			style="position: absolute;top:95%;left: 4%;transform: (-50%,-50%);cursor: pointer;font-size: 15px;">
+		
+			<i class="fas fa-newspaper fa-lg" style="color: #ffffff;" id="news_icon"></i>
 			
 			
 			
+			
+			</div>
+
+
+			<div id="news">
+
+				<h3 class="main_heading">News</h3>
+				<img src="" alt="cover_come_here" id="thumb" width="100" height="100" style="border-radius: 50%;">
+				<br>
+				<p id="content"></p>
+				<br>
+				<button id="visit">Full Article</button>
+				<button id="close">Close</button>
+
+		
+
 			</div>
 
 	</div>
@@ -112,7 +131,7 @@
 
 
 	<!--setting dialogue start from here-->
-	<dialog class="mdl-dialog">
+	<dialog class="mdl-dialog" id="setting-dialog">
 		<p align="center">
 			<h4 class="mdl-dialog__title" id="heading"><i class="material-icons"
 					style="font-size: 35px;;">settings</i>Settings</h4>
@@ -207,14 +226,25 @@
 		</div>
 	</dialog>
 
-	<!--dialogue ends here-->
+	<!--Setting dialogue ends here-->
+
+
+	<!--News Dialog start from here-->
+
+	
+
+	<!--News Dialog End here-->
 
 	<script src="js/mousetrap.min.js"></script>
 	<script src="js/modal.js">
 
 	</script>
+
+	<!--<script src="js/news_modal.js"></script>-->
+	
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script src="js/jquery-ui.js"></script>
+	<script src="js/news.js"></script>
 	<script type="text/javascript" src="js/clipboard.min.js"></script>
 	<script type="text/javascript" src="js/copy.js"></script>
 	<!--<script type="text/javascript" src="js/battery.js"></script>-->
