@@ -49,7 +49,7 @@
 
 		<div id="bar">
 			<ul id="sidebar">
-				<li>
+				<li id="dev">
 					<a href="#"><img src="https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-9/78607726_860942007684625_5799796198680297472_n.jpg?_nc_cat=106&_nc_ohc=YC4oIcDirq4AX9mNyTA&_nc_ht=scontent-bom1-1.xx&oh=73e468a0fd47df35a0c6b8785f5fc6e9&oe=5EA36E3B" alt="user_image" id="user-image"></a>
 				</li>
 				<li>
@@ -101,15 +101,39 @@
 
 			<div id="news">
 
-				<h3 class="main_heading">News</h3>
-				<img src="" alt="cover_come_here" id="thumb" width="100" height="100" style="border-radius: 50%;">
+				<h3 class="main_heading" id="close"><i class="material-icons">close</i></h3>
+				<img src="" alt="cover_come_here" id="thumb" width="200" height="200" style="border-radius: 50%;">
 				<br>
+				<h5 id="title"></h5>
 				<p id="content"></p>
 				<br>
-				<button id="visit">Full Article</button>
-				<button id="close">Close</button>
+				
+				<button id="visit" class="mdl-button mdl-js-button mdl-button--fab  mdl-button--colored" style="float: right;"><i class="material-icons" id="visit_icon">arrow_forward</i></button>
+				<button id="sourceId">Source:Google News</button>
+				
 
 		
+
+			</div>
+
+
+			<div id="dev_info">
+
+				<div class="dev_image">
+					<img src="https://scontent-frt3-1.xx.fbcdn.net/v/t1.0-9/78607726_860942007684625_5799796198680297472_n.jpg?_nc_cat=106&_nc_ohc=6dHKWIfAgasAX8FH8jx&_nc_ht=scontent-frt3-1.xx&oh=d602dd37fa99dec88b1da6c5f586b0f5&oe=5EA36E3B" alt="dev_image">
+				</div>
+				<p id="dev_title">Sumit</p><br>
+				<pre id="dev_content">
+					I am the Student of Computer Science, 
+					Currently Studying Information Science.
+					I mostly like,To develop my skills with
+				    daily Habit
+				</pre>
+				<br>
+				<div class="social">
+					<button id="close_btn"><i class="material-icons" style="color: #ffffff;" id="visit_profile">close</i></button>
+					
+				</div>
 
 			</div>
 
@@ -129,23 +153,14 @@
 
 
 
-
 	<!--setting dialogue start from here-->
-	<dialog class="mdl-dialog" id="setting-dialog">
+	<dialog class="mdl-dialog ui-widget-content" id="setting-dialog" style="border-radius: 10px;">
 		<p align="center">
 			<h4 class="mdl-dialog__title" id="heading"><i class="material-icons"
 					style="font-size: 35px;;">settings</i>Settings</h4>
 		</p>
 		<div class="mdl-dialog__content">
-			
-			
-			
 			<h5 id="message"></h5>
-			<br>
-			<!-- Textfield with Floating Label -->
-
-
-
 			<!--input field for username-->
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				<input class="mdl-textfield__input" type="text" id="name">
@@ -206,6 +221,30 @@
 				
 			</select>
 
+			<!--News Source Selection-->
+			<h6>Choose News Provider</h6>
+			<select class="news_selection">
+				<option value="0">Abc News</option>
+				<option value="1">Google News India</option>
+				<option value="2">BBC News</option>
+				<option value="3">BBC Sport</option>
+				<option value="4">Buzzfeed</option>
+				<option value="5">CBC News</option>
+				<option value="6">CNN</option>
+				<option value="7">ESPN</option>
+				<option value="8">Fox News</option>
+				<option value="9">Google News</option>
+				<option value="10">Hacker News</option>
+				<option value="11">National Geographic</option>
+				<option value="12">Techcrunch</option>
+				<option value="13">Techradar</option>
+				<option value="14">Times of India</option>
+				<option value="15">Time</option>
+				<option value="16">USA Today</option>
+				<option value="17">Wired</option>
+				
+			</select>
+
 
 
 		</div>
@@ -213,15 +252,15 @@
 
 		<div class="mdl-dialog__actions">
 
-			<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored close"><i
+			<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored close" id="closeSetting"><i
 					class="material-icons">clear</i></button>
 
 			<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored"
 				id="save"><i class="material-icons">save</i></button>
 			<!--button to clear Data-->
-			<a href="#" id="delete"
-				class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored"><i
-					class="material-icons" aria-hidden="true" id="bin">delete</i></a>
+			<button  id="delete"
+				class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" id="bin"><i
+					class="material-icons" aria-hidden="true" >delete</i></button>
 
 		</div>
 	</dialog>
