@@ -1,4 +1,4 @@
-var dialog = document.querySelector('dialog');
+var dialog = document.getElementById('setting-dialog');
 		var showDialogButton = document.querySelector('#setting');
 		if (! dialog.showModal) {
 		  dialogPolyfill.registerDialog(dialog);

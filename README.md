@@ -1,13 +1,6 @@
-<img src="https://user-images.githubusercontent.com/52311969/72695787-cd44ee00-3b5f-11ea-8735-d97d2aa38b3f.png">
-<br>
-
-<br>
-<h4>Developer Profile as a sidebar</h4>
-<img src="https://user-images.githubusercontent.com/52311969/72695679-70e1ce80-3b5f-11ea-88d2-b20079700406.png">
-<br>
-<h4>News Feature</h4>
-
-![ezgif-1-984ea05cd965](https://user-images.githubusercontent.com/52311969/72772681-92f45300-3c2a-11ea-977b-b653b70ed628.gif)
+# Unsplash v1.3
+Chrome new tab extension.
+<img src="https://firebasestorage.googleapis.com/v0/b/my-project-1544342477588.appspot.com/o/Screenshot%202020-01-17%20at%207.06.03%20PM.png?alt=media&token=3bec956f-0d3f-4542-a729-ae64c773cf7f">
 
 <br>
 <h1>Settings<h1>

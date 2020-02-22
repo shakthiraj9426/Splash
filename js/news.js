@@ -8,7 +8,19 @@ $(document).ready(function()
 
 function get_News(key)
 {
-$.ajax({url:'https://newsapi.org/v2/top-headlines?country=in&apiKey='+key,
+
+  var sourceNo=localStorage.getItem('news_source');
+
+  var sources = ['abc-news','google-news-in',
+  'bbc-news','bbc-sport','buzzfeed','cbc-news',
+  'cnn','espn','fox-news','google-news','hacker-news'
+  ,'national-geographic','techcrunch','techradar','the-times-of-india',
+  'time','usa-today','wired'];
+  var totalsource = sources.length;
+  console.log(totalsource);
+
+   	var randomNoForSource = Math.floor(Math.random()*(0,totalsource));
+$.ajax({url:'https://newsapi.org/v2/top-headlines?sources='+[sources[sourceNo]]+'&apiKey='+key,
    type:'GET',
    success:function(data)
    {
@@ -23,6 +35,7 @@ $.ajax({url:'https://newsapi.org/v2/top-headlines?country=in&apiKey='+key,
     var title = data['articles'][randomNo]['title'];
     var content = data['articles'][randomNo]['description'];
     var thumb_url=data['articles'][randomNo]['urlToImage'];
+    var author=data['articles'][randomNo]['author'];
 
 
     /*text_truncate = function(str, length, ending) {
@@ -49,17 +62,18 @@ $.ajax({url:'https://newsapi.org/v2/top-headlines?country=in&apiKey='+key,
     $('#thumb').attr('src',thumb_url);
    }
    else{
-    $('#thumb').attr('src','welcome_card.jpg');
+    $('#thumb').attr('src','./logo.png');
    }
 
    if(content!=null)
    {
     $('#title').html(title);
     $('#content').html(content);
+    $('#sourceId').html('Provider: '+author);
    }
    else
    {
-    $('#content').html('content not avialable');
+    $('#title').html(title);
    }
 
     
@@ -94,6 +108,8 @@ $('#visit').on('click',function()
 
 function run_api()
 {
+  $('#news').fadeOut(800);
+  $('#news').fadeIn(800);
   get_News(api_key);
 }
 
