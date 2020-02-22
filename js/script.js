@@ -1,16 +1,14 @@
-/*var elem = document.documentElement;
 
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  }*/
 $(document).ready(function () {
 
+//store a default value for news source
 
-  /*var el = document.documentElement,
-        rfs = el.requestFullScreen
-        || el.webkitRequestFullScreen
-        || el.mozRequestFullScreen;
-    rfs.call(el);*/
+if(localStorage.getItem('news_source')==null)
+{
+  localStorage.setItem('news_source','0');
+}
+
+//The default news source end here
   
 
 
@@ -44,6 +42,16 @@ $(document).ready(function () {
     $('#message').text("Hi, " + name);
   }
 
+  var HexValue="";
+
+  if(theme==null||theme=='default') HexValue="#80cbc4";
+  else if(theme=='purple') HexValue="#7c4dff";
+  else if(theme=='indigo') HexValue='#42a5f5';
+  else
+  {
+    HexValue="#FBC02D";
+  }
+
   //check theme status from local storage
 
   if (theme == null || theme == 'default') {
@@ -52,6 +60,10 @@ $(document).ready(function () {
     $('#heading').css("color", "#80cbc4");
     //$('#search').css('border-color','#80cbc4');
     $('button').css('background-color','#80cbc4');
+    $('#close_btn').css('background-color','#80cbc4');
+    $('#dev_title').css('color','#80cbc4');
+    $('#title').css('color','#80cbc4');
+    $('select').css('background-color','#80cbc4');
   } else if (theme == 'purple') {
     $('#theme').attr('href', 'https://code.getmdl.io/1.3.0/material.purple-deep_purple.min.css');
     $('.themes option[value=purple]').attr('selected', 'selected');
@@ -59,6 +71,11 @@ $(document).ready(function () {
     //$('#search').css('border-color','#7c4dff');
     //$('#key').css('color','#7c4dff');
     $('button').css('background-color','#7c4dff');
+    $('#close_btn').css('background-color','#7c4dff');
+    $('#dev_title').css('color','#7c4dff');
+    $('#title').css('color','#7c4dff');
+    $('select').css('background-color','#7c4dff');
+    
 
   } else if (theme == 'indigo') {
     $('#theme').attr('href', 'https://code.getmdl.io/1.3.0/material.indigo-blue.min.css');
@@ -67,6 +84,10 @@ $(document).ready(function () {
     //$('#search').css('border-color','#42a5f5');
     //$('#key').css('color','#42a5f5');
     $('button').css('background-color','#42a5f5');
+    $('#close_btn').css('background-color','#42a5f5');
+    $('#dev_title').css('color','#42a5f5');
+    $('#title').css('color','#42a5f5');
+    $('select').css('background-color','#42a5f5');
   } else if (theme == 'amber') {
 
     $('#theme').attr('href', 'https://code.getmdl.io/1.3.0/material.yellow-amber.min.css');
@@ -75,7 +96,25 @@ $(document).ready(function () {
     //$('#search').css('border-color','#FBC02D');
     //$('#key').css('color','#FBC02D');
     $('button').css('background-color','#FBC02D');
+    $('#close_btn').css('background-color','#FBC02D');
+    $('#dev_title').css('color','#FBC02D');
+    $('#title').css('color','#FBC02D');
+    $('select').css('background-color','#FBC02D');
+
+   
   }
+
+  $('#close_btn').on('mousemove',function()
+  {
+    $('#close_btn').css('background-color','red');
+  });
+
+  $('#close_btn').on('mouseleave',function()
+  {
+    $('#close_btn').css('background-color',HexValue);
+  });
+
+  
 
 
 
@@ -97,6 +136,20 @@ $(document).ready(function () {
       }
     })
   }
+
+
+  setInterval(getQuote,10000);
+
+   //Call the function getQuote() to generate a single quote on every page load
+
+   function quote_animate()
+   {
+    $('#quote').fadeOut(1000);
+    $('#quote').fadeIn(1000);
+   }
+  
+  setInterval(quote_animate,4000);
+
 
 
 
@@ -121,8 +174,7 @@ $(document).ready(function () {
 
 
 
-  //Call the function getQuote() to generate a single quote on every page load
-  getQuote();
+ 
 
 
 
@@ -181,6 +233,7 @@ $(document).ready(function () {
     var minutes = day.getMinutes(); //getting minutes & seconds from day object
     var seconds = day.getSeconds();
     $('#time').html(hour + ":" + minutes + ":" + seconds); // display this in element has id time
+    
   }
 
 
@@ -197,6 +250,10 @@ $(document).ready(function () {
       status = "Morning " + username;
       $('#greets').html("Good," + status);
       $('#bar').css('background-color','#ffffff');
+      $('.mdl-dialog').css('background-color','#ffffff');
+      $('.mdl-dialog__content').css('color','#1d1d1d');
+      $('#news').css('background-color','#ffffff');
+      $('#news').css('color','#1d1d1d');
       
       $('a').css('color','#1d1d1d');
     } else if (h >= 12 && h <= 16) {
@@ -215,6 +272,14 @@ $(document).ready(function () {
       $('#news').css('background-color','#1d1d1d');
       $('#content').css('color','#ffffff');
       $('.main_heading').css('color','#ffffff');
+      $('.mdl-dialog').css('background-color','#1d1d1d');
+      $('.mdl-dialog__content').css('color','#ffffff');
+      $('#news').css('background-color','#1d1d1d1');
+      $('#dev_info').css('background-color','#1d1d1d1');
+      $('#news').css('color','#ffffff');
+      $('#dev_content').css('color','#ffffff');
+      $('#close_btn').css('border-color','#1d1d1d');
+      
       
     }
 
@@ -537,13 +602,14 @@ fReader.onloadend = function(event){
     const name = $('#name').val();
     const engine = $('.eng').children("option:selected").val();
     const bar_dir = $('.bar').children("option:selected").val();
-    const avatar= $()
+    const news_source= $('.news_selection').children("option:selected").val();
     localStorage.setItem('background', backs);
     localStorage.setItem('username', name);
     localStorage.setItem('theme', theme_value);
     localStorage.setItem('time', time_value);
     localStorage.setItem('engine', engine);
     localStorage.setItem('dir',bar_dir);
+    localStorage.setItem('news_source',news_source);
 
 
 
@@ -604,7 +670,7 @@ fReader.onloadend = function(event){
 
 
 
-  // update ends here
+  // setting icon animation end here
 
 
 
@@ -649,6 +715,8 @@ fReader.onloadend = function(event){
 
   preserve_bar();
 
+  //Preventing Dev Side bar state end here
+
 
 
 
@@ -669,13 +737,47 @@ $('#news_icon').addClass('fas fa-newspaper fa-lg');
 
   $('#news_icon').on('click',function()
   {
-    $('#time').css('visibility','hidden');
-    $('#greets').css('visibility','hidden');
-    $( "#news" ).animate({
-      left:"50%"
-    });
+    
+   
+    $('#news').css('visibility','visible');
+    $('#time').fadeOut(100);
+    $('#greets').fadeOut(100);
+    $('#quote').css('visibility','hidden');
+    
 
   });
+
+  //News Dialog end here
+
+
+  //Adding click event on Dev profile side bar picture
+  //which opening devloper profile dialog box
+
+  $('#dev').on('click',function()
+  {
+    
+   
+    $('#dev_info').css('visibility','visible');
+    $('#time').fadeOut(100);
+    $('#greets').fadeOut(100);
+    $('#quote').css('visibility','hidden');
+    
+
+  });
+
+
+  $('#close_btn').on('click',function()
+  {
+    
+    $('#time').fadeIn(1000);
+    $('#greets').fadeIn(1000);
+    $('#dev_info').css('visibility','hidden');
+    $('#quote').css('visibility','visible');
+    
+
+  });
+
+  //developer profile end here
 
 
 
@@ -684,14 +786,93 @@ $('#news_icon').addClass('fas fa-newspaper fa-lg');
 
   $('#close').on('click',function()
   {
-    $('#time').css('visibility','visible');
-    $('#greets').css('visibility','visible');
-    $( "#news" ).animate({
-      left:"-50%"
-    });
+    
+    $('#time').fadeIn(1000);
+    $('#greets').fadeIn(1000);
+    $('#news').css('visibility','hidden');
+    $('#quote').css('visibility','visible');
+    
 
   });
 
+  //This close the news dialog
+
+
+
+  //function to prevent News Source Selection State
+
+  function prevent_news_source()
+  {
+    var news_source_name=localStorage.getItem('news_source');
+    switch(news_source_name)
+    {
+      case '0':
+        $('.news_selection option[value=0]').attr('selected', 'selected');
+        break;
+        case '1':
+        $('.news_selection option[value=1]').attr('selected', 'selected');
+        break;
+        case '2':
+        $('.news_selection option[value=2]').attr('selected', 'selected');
+        break;
+        case '3':
+        $('.news_selection option[value=3]').attr('selected', 'selected');
+        break;
+        case '4':
+        $('.news_selection option[value=4]').attr('selected', 'selected');
+        break;
+        case '5':
+        $('.news_selection option[value=5]').attr('selected', 'selected');
+        break;
+        case '6':
+        $('.news_selection option[value=6]').attr('selected', 'selected');
+        break;
+        case '7':
+        $('.news_selection option[value=7]').attr('selected', 'selected');
+        break;
+        case '8':
+        $('.news_selection option[value=8]').attr('selected', 'selected');
+        break;
+        case '9':
+        $('.news_selection option[value=9]').attr('selected', 'selected');
+        break;
+        case '10':
+        $('.news_selection option[value=10]').attr('selected', 'selected');
+        break;
+        case '11':
+        $('.news_selection option[value=11]').attr('selected', 'selected');
+        break;
+        case '12':
+        $('.news_selection option[value=12]').attr('selected', 'selected');
+        break;
+        case '13':
+        $('.news_selection option[value=13]').attr('selected', 'selected');
+        break;
+        case '14':
+        $('.news_selection option[value=14]').attr('selected', 'selected');
+        break;
+        case '15':
+        $('.news_selection option[value=15]').attr('selected', 'selected');
+        break;
+        case '16':
+        $('.news_selection option[value=16]').attr('selected', 'selected');
+        break;
+        case '17':
+        $('.news_selection option[value=17]').attr('selected', 'selected');
+        break;
+        default:
+        $('.news_selection option[value=0]').attr('selected', 'selected');
+        break;
+
+
+    }
+  }
+
+
+  prevent_news_source();
+
+  //preventing news source selection end here
+
   
 
 
@@ -699,7 +880,45 @@ $('#news_icon').addClass('fas fa-newspaper fa-lg');
   
 
 
-  
+  //blink the search icon
+
+  function blink()
+  {
+    $('#search_icon').fadeOut(1000);
+    $('#search_icon').fadeIn(1000);
+
+  }
+
+ setInterval(blink,1000);
+
+ //blinking of search icon end here
+
+
+
+//make the setting dialog draggable
+ $('#setting-dialog').draggable();
+//Draggable Ends Here
+
+
+
+
+ $('#visit').on('mousemove',function()
+ {
+   $('#visit_icon').css('left','80%');
+   $('#visit_icon').css('transition','all .8s ease');
+ });
+ $('#visit').on('mouseleave',function()
+ {
+   $('#visit_icon').css('left','50%');
+   $('#visit_icon').css('transition','all .8s ease');
+ });
+
+
+ $.get("https://cricapi.com/api/cricket?apikey=Il9m8bAVUNadfW8bbAcluR0vOY63", function(matchdata) {
+	matchdata.data.forEach(function(md) {
+		console.log(md.description + " - to grab more details, simply use the unique_id " + md.unique_id + " with the cricketScore api!");
+	});
+});
 
 
 
@@ -707,12 +926,6 @@ $('#news_icon').addClass('fas fa-newspaper fa-lg');
 
   
 });
-var bookmarkTreeNodes = chrome.bookmarks.getTree(
-  function(bookmarkTreeNodes) {
-   console.log(bookmarkTreeNodes[0].children);
-  });
-
-
 
 //This prevent to view source code or disable right click on the webpage
 
