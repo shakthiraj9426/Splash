@@ -339,96 +339,15 @@ h1 {
 }
 
 
-#news
-{
-	width: 500px;
-	height: 660px;
-	background-color: #ffffff;
-	position: absolute;
-	margin:10px auto;
-	top: 50%;
-	
-	left: 50%;
-	visibility: hidden;
-	
-	transform: translate(-50%,-50%);
-	border-radius: 10px;
-	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-
+#heading{
+	display: flex;
+	align-items: center;
+	gap:10px;
 }
 
-#news
-{
-	position: absolute;
-	z-index: 1000;
-}
 
-.main_heading
-{
-	font-family: 'Ubuntu', sans-serif;
-	margin: 10px 20px;
-	padding: 10x;
 
-}
-#thumb
-{
-	margin: 50px 20px;
-	padding: 10x;
-	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-#content
-{
-	margin: 20px 25px;
-	padding: 10x;
-	font-size: 16px;
-	
-}
 
-#title
-{
-	margin: 10px 20px;
-	padding: 10px;
-	
-}
-#news:hover
-{
-	box-shadow: ;
-}
-
-#news #visit
-{
-	margin: 10px 10px;
-	position: fixed;
-	padding: 10x;
-	border: none;
-	left: 92%;
-	top: 85%;
-	outline: none;
-	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-	border-radius: 65px;
-	color: #ffffff;
-	
-	
-
-}
-#news #sourceId
-{
-	margin: 15px 20px;
-	position: fixed;
-	padding: 10x;
-	border: none;
-	
-	top: 92%;
-	left: 2%;
-	height: 25px;
-	outline: none;
-	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-	border-radius: 65px;
-	color: #ffffff;
-	
-	
-
-}
 
 
 #dev_info
@@ -528,8 +447,8 @@ select {
   #closeSetting
   {
 	  position: absolute;
-	  top:-2%;
-	  left: -8%;
+	  top:2%;
+	  right: 15px;
   }
 
 
